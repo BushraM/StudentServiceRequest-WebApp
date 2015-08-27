@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Assignment.ViewModels.ProgramList>
+
+@{
+    ViewBag.Title = "Index";
+
+    string statusMessage;
+    if (TempData["statusMessage"] == null)
+    {
+        statusMessage = "";
+    }
+    else
+    {
+        statusMessage = TempData["statusMessage"] as string;
+    }
+}
+
+<h2>List of Programs</h2>
+<hr/>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<p class="text-danger">@statusMessage</p>
+
+<table class="table">
+     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.programCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.programDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.programCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.programDescription)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new {  id= item.Id  })
+        </td>
+    </tr>
+}
+
+</table>

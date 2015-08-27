@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Assignment.ViewModels.StudentList>
+
+@{
+    ViewBag.Title = "Index";
+
+    string statusMessage;
+    if (TempData["statusMessage"] == null)
+    {
+        statusMessage = "";
+    }
+    else
+    {
+        statusMessage = TempData["statusMessage"] as string;
+    }
+}
+
+<h2>List of students</h2>
+<hr/>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<p class="text-danger">@statusMessage</p>
+<table class="table">
+
+    
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.studentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.studentNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

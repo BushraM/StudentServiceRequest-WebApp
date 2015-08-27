@@ -1,0 +1,160 @@
+﻿@model Assignment.ViewModels.EditServiceRequest
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>EditServiceRequest</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.studentNumber, new { @class = "control-label col-md-2" } )
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.studentNumber, new { @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.studentNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StudentName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.StudentName, new { @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.StudentName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProgramCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ProgramCode, new { @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.ProgramCode)
+            </div>
+        </div>
+        <hr/>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.status, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.status)
+
+                <select name="status">
+                    <option value="Open">Open</option>
+                    <option value="Close">Close</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.priority, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.priority)
+
+                <select name="priority">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                </select>
+
+            </div>
+        </div>
+        <hr/>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceTitle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ServiceTitle)
+                @Html.ValidationMessageFor(model => model.ServiceTitle)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.category, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.category)
+
+                <select name="category">
+                    <option value="dc">Dropping a course</option>
+                    <option value="ac">Adding a course</option>
+                    <option value="as">Request for advance standings</option>
+                    <option value="sp">Switching programs</option>
+                    <option value="oi">Other inquiries</option>
+                </select>
+
+            </div>
+        </div>
+        @*
+    <div class="form-group">
+        @Html.LabelFor(model => model.description, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+    </div>
+*@
+
+                        
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.description, new { @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.description)
+                <script>CKEDITOR.replace('description', { startupFocus: false });</script>
+            </div>
+        </div>
+        
+        <hr/>
+
+
+
+        @*
+    <div class="form-group">
+        @Html.LabelFor(model => model.description, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea name="description"></textarea>
+            <script>CKEDITOR.replace('description', { startupFocus: false });</script>
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+    </div>
+*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.notes, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.notes, new { @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.notes)
+                <script>CKEDITOR.replace('notes', { startupFocus: false });</script>
+            </div>
+        </div>
+
+        @*
+    <div class="form-group">
+        @Html.LabelFor(model => model.notes, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.notes)
+            @Html.ValidationMessageFor(model => model.notes)
+        </div>
+    </div>
+*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

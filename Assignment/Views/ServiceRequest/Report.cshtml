@@ -1,0 +1,143 @@
+﻿@model Assignment.ViewModels.ServiceRequestReportForm
+
+@{
+    ViewBag.Title = "Report";
+
+    string statusMessage;
+    if (TempData["statusMessage"] == null)
+    {
+        statusMessage = "";
+    }
+    else
+    {
+        statusMessage = TempData["statusMessage"] as string;
+    }
+}
+
+<h2>Service Request Report</h2>
+<p class="field-validation-error">@statusMessage</p>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Get by student Number</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("StudentNumberReport", "ServiceRequest"))
+        {
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.Label("studentNumber", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("studentNumber", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Get Report" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@*Report Using Program *@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Get by Program</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("ProgramReport", "ServiceRequest"))
+        {
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.Label("programCode", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("programCode", new { htmlAttributes = new { @class = "form-control" } })
+                           *(e.g. 'CPA' )
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Get Report" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+@*Report Using Status*@
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Get by Status</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("StatusReport", "ServiceRequest"))
+        {
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.Label("status", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*@Html.Editor("status", new { htmlAttributes = new { @class = "form-control" } })*@
+
+                        <select name="status">
+                            <option value="Open">Open</option>
+                            <option value="Close">Close</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Get Report" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@*Report Using date logged *@
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Get by Date Range</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("DateReport", "ServiceRequest"))
+        {
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <p>
+                        @Html.LabelFor(model => model.fromDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.fromDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fromDate, "", new { @class = "text-danger" })
+                        *Day/Month/Year (e.g. 01/09/2014)
+                    </p>
+
+                    <p>
+                        @Html.LabelFor(model => model.toDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.toDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.toDate, "", new { @class = "text-danger" })
+                    </p>         
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Get Report" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+   @* @Scripts.Render("~/scripts/dateHelper.js")*@
+}

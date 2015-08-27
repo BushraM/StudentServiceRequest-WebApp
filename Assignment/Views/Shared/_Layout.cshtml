@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SENECA COLLEGE</title>
+    <link rel="stylesheet" href="style.css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+</head>
+<body>
+    <div class="BackgroundGradient"> </div>
+    <div class="BodyContent">
+
+        <div class="BorderBorder">
+            <div class="BorderBL"><div></div></div><div class="BorderBR"><div></div></div><div class="BorderTL"></div><div class="BorderTR"><div></div></div><div class="BorderT"></div><div class="BorderR"><div></div></div><div class="BorderB"><div></div></div><div class="BorderL"></div><div class="BorderC"></div><div class="Border">
+
+                <div class="Header">
+                    <div class="HeaderTitle">
+                        <h1><a href="#">SENECA COLLEGE</a></h1>
+                        <h2>School of Information & Communication Technology </h2>
+                    </div>
+                </div><div class="Menu">
+                         @* <ul><%= RenderMenu() %> </ul>*@ 
+
+                      <ul>
+                          <li>@Html.ActionLink("Create Service Request", "Create", "ServiceRequest")</li>
+                          <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
+                          @if (User.IsInRole("Admin") || User.IsInRole("Coordinator"))
+                          {
+                              <li class="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Service Request <span class="caret"></span></a>
+                                  <ul class="dropdown-menu" role="menu">
+                                      <li>@Html.ActionLink("View Service Request", "Index", "ServiceRequest")</li>
+                                      <li>@Html.ActionLink("Search Service Request", "Report", "ServiceRequest")</li>
+                                  </ul>
+                              </li>
+                             <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                              
+                              <li class="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Student <span class="caret"></span></a>
+                                  <ul class="dropdown-menu" role="menu">
+                                      <li>@Html.ActionLink("View Student", "Index", "Student")</li>
+                                      <li>@Html.ActionLink("Create Student", "Create", "Student")</li>
+                                  </ul>
+                              </li>
+                               <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                              
+                              <li class="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Program <span class="caret"></span></a>
+                                  <ul class="dropdown-menu" role="menu">
+                                      <li>@Html.ActionLink("View Program", "Index", "Program")</li>
+                                      <li>@Html.ActionLink("Create Program", "Create", "Program")</li>
+                                  </ul>
+                              </li>
+                               <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
+                              if (User.IsInRole("Admin"))
+                              {
+                                  <li>@Html.ActionLink("Create Coordinator", "RegisterCoordinator", "Account")</li> 
+                                  <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                  <li>@Html.ActionLink("Role: Admin", "", "")</li>
+                              }
+                              else
+                              {
+                                  <li>@Html.ActionLink("Role: Coordinator", "", "")</li>
+                              }
+                          }
+
+                          <li><ul>@Html.Partial("_LoginPartial")</ul></li>
+                       </ul>
+
+                       
+
+
+
+                </div><div class="Columns">
+                    <div class="MainColumn">
+                        <div class="ArticleBorder">
+                            <div class="ArticleBL"><div></div></div><div class="ArticleBR"><div></div></div><div class="ArticleTL"></div><div class="ArticleTR"><div></div></div><div class="ArticleT"></div><div class="ArticleR"><div></div></div><div class="ArticleB"><div></div></div><div class="ArticleL"></div><div class="ArticleC"></div><div class="Article">
+
+                                <asp:ContentPlaceHolder id="Content" runat="server" />
+                                @RenderBody()                                                                                                                                                                                                                                                                                                                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Footer">
+                    &copy; @DateTime.Now.Year - My ASP.NET Application - @Html.ActionLink("Contact Us", "Contact", "Home")
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+﻿@model Assignment.ViewModels.ServiceRequestAddForm
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2></h2>
+
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
+
+@using (Html.BeginForm()) 
+{
+   
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Create New Service Request</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <p class="text-danger">@ViewBag.StudentInvalidErrorMessage</p>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.studentNumber, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.studentNumber)
+                @Html.ValidationMessageFor(model => model.studentNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Program</label>
+            <div class="col-md-10">
+                @Html.DropDownList("ProgramId", Model.program)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.category, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.category)
+
+                <select name="category">
+                    <option value="dc">Dropping a course</option>
+                    <option value="ac">Adding a course</option>
+                    <option value="as">Request for advance standings</option>
+                    <option value="sp">Switching programs</option>
+                    <option value="oi">Other inquiries</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceTitle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ServiceTitle)
+                @Html.ValidationMessageFor(model => model.ServiceTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea name="description" >@Model.description</textarea>
+                <script>CKEDITOR.replace('description', { startupFocus: true });</script>
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
