@@ -1,6 +1,6 @@
 # StudentServiceRequest-WebApp
 
-Asp.net web application which will enable program coordinators to efficiently manage requests from students
+Asp.net web application which enables program coordinators to efficiently manage requests from students
 
 A new service request can be created by the coordinator, or by the student. A coordinator will be able to work 
 with a list of requests, and then select a request for processing. After the request has been resolved, 
